@@ -18,3 +18,7 @@ after_success:
   - docker push tmkha89/udagram-api-user:v1
   - docker push tmkha89/udagram-frontend:v1
   - docker push tmkha89/reverseproxy:v1
+
+branches:
+  only:
+    - main
