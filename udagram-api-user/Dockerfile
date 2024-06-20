@@ -6,10 +6,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-# in case package.json files are not synced
-RUN npm install --package-lock-only
-
-RUN npm ci 
+RUN npm ci -f
 ## Bundle app source
 COPY . .
 EXPOSE 8080
