@@ -7,20 +7,19 @@ before_script:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 script:
-  - docker build -t udagram-api-feed ./udagram-api-feed
-  - docker build -t udagram-api-user ./udagram-api-user
-  - docker build -t udagram-frontend ./udagram-frontend
-  - docker build -t reverseproxy ./reverseproxy
+  - docker-compose -f docker-compose-build.yaml build --parallel
 
-  - docker tag udagram-api-feed tmkha89/udagram-api-feed:v1
-  - docker tag udagram-api-user tmkha89/udagram-api-user:v1
-  - docker tag udagram-frontend tmkha89/udagram-frontend:v1
-  - docker tag reverseproxy tmkha89/reverseproxy:v1
 
-  - docker push tmkha89/udagram-api-feed:v1
-  - docker push tmkha89/udagram-api-user:v1
-  - docker push tmkha89/udagram-frontend:v1
-  - docker push tmkha89/reverseproxy:v1
+after success:
+  - docker tag udagram-api-feed tmkha1989/udagram-api-feed:v1
+  - docker tag udagram-api-user tmkha1989/udagram-api-user:v1
+  - docker tag udagram-frontend tmkha1989/udagram-frontend:v1
+  - docker tag reverseproxy tmkha1989/reverseproxy:v1
+
+  - docker push tmkha1989/udagram-api-feed:v1
+  - docker push tmkha1989/udagram-api-user:v1
+  - docker push tmkha1989/udagram-frontend:v1
+  - docker push tmkha1989/reverseproxy:v1
 
 
 branches:
