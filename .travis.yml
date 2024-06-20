@@ -10,16 +10,16 @@ script:
   - docker-compose -f docker-compose-build.yaml build --parallel
 
 
-after success:
-  - docker tag udagram-api-feed tmkha1989/udagram-api-feed:v1
-  - docker tag udagram-api-user tmkha1989/udagram-api-user:v1
-  - docker tag udagram-frontend tmkha1989/udagram-frontend:v1
-  - docker tag reverseproxy tmkha1989/reverseproxy:v1
+after_success:
+  - docker tag udagram-api-feed tmkha1989/udagram-api-feed:latest
+  - docker tag udagram-api-user tmkha1989/udagram-api-user:latest
+  - docker tag udagram-frontend tmkha1989/udagram-frontend:latest
+  - docker tag reverseproxy tmkha1989/reverseproxy:latest
 
-  - docker push tmkha1989/udagram-api-feed:v1
-  - docker push tmkha1989/udagram-api-user:v1
-  - docker push tmkha1989/udagram-frontend:v1
-  - docker push tmkha1989/reverseproxy:v1
+  - docker push tmkha1989/udagram-api-feed:latest
+  - docker push tmkha1989/udagram-api-user:latest
+  - docker push tmkha1989/udagram-frontend:latest
+  - docker push tmkha1989/reverseproxy:latest
 
 
 branches:
