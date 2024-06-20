@@ -3,8 +3,11 @@ language: minimal
 services:
   - docker
 
-install:
+before install:
   - docker-compose -f docker-compose-build.yaml build --parallel
+
+install:
+  - docker-compose up
 
 deploy:
   provider: script
@@ -22,4 +25,3 @@ deploy:
     branch:
     - main
     - master
-    - dev
