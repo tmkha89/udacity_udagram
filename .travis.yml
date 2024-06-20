@@ -3,24 +3,18 @@ language: minimal
 services:
   - docker
 
-before install:
-  - docker-compose -f docker-compose-build.yaml build --parallel
-
 install:
-  - docker-compose up
-
-deploy:
-  provider: script
-  script:
-    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    - docker tag udagram-api-feed tmkha89/udagram-api-feed:v1
-    - docker tag udagram-api-user tmkha89/udagram-api-user:v1
-    - docker tag udagram-frontend tmkha89/udagram-frontend:v1
-    - docker tag reverseproxy tmkha89/reverseproxy:v1
-    - docker push tmkha89/udagram-api-feed:v1
-    - docker push tmkha89/udagram-api-user:v1
-    - docker push tmkha89/udagram-frontend:v1
-    - docker push tmkha89/reverseproxy:v1
+  - docker-compose down
+  - docker-compose -f docker-compose-build.yaml build --parallel
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker tag udagram-api-feed tmkha89/udagram-api-feed:v1
+  - docker tag udagram-api-user tmkha89/udagram-api-user:v1
+  - docker tag udagram-frontend tmkha89/udagram-frontend:v1
+  - docker tag reverseproxy tmkha89/reverseproxy:v1
+  - docker push tmkha89/udagram-api-feed:v1
+  - docker push tmkha89/udagram-api-user:v1
+  - docker push tmkha89/udagram-frontend:v1
+  - docker push tmkha89/reverseproxy:v1
   on:
     branch:
     - main
