@@ -3,14 +3,8 @@ import {config} from './config/config';
 
 
 // Configure AWS
-// const credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
-// AWS.config.credentials = credentials;
-
-AWS.config.update({
-  accessKeyId: config.aws_access_key,
-  secretAccessKey: config.aws_secret_key,
-  region: config.aws_region
-});
+const credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
+AWS.config.credentials = credentials;
 
 export const s3 = new AWS.S3({
   signatureVersion: 'v4',
