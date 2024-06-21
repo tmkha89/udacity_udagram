@@ -31,7 +31,7 @@ import {V0_USER_MODELS} from './controllers/v0/model.index';
     ],
     methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
     preflightContinue: true,
-    origin: '*',
+    origin: config.url,
   }));
 
   app.use('/api/v0/', IndexRouter);
