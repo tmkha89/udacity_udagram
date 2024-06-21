@@ -66,7 +66,11 @@ spec:
             secretKeyRef:
               name: env-secret
               key: POSTGRES_USERNAME
+        volumeMounts:
+          - name: aws-credentials-volume
+            mountPath: "/root/.aws/"
+            readOnly: true
       volumes:
-      - name: aws-secret
-        secret:
-          secretName: aws-credentials-secret
+        - name: aws-credentials-volume
+          secret:
+            secretName: aws-credentials
